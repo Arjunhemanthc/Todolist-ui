@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class Register {
   errorMessage: string = '';
   successMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private cdr: ChangeDetectorRef) {}
 
   register(name: string, email: string, pass: string, confirmPass: string) {
     this.errorMessage = '';
@@ -28,6 +28,7 @@ export class Register {
     this.authService.register({ username: name, email, password: pass, confirmPassword: confirmPass }).subscribe({
       next: () => {
         this.successMessage = 'Registration successful! You can now login.';
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Registration error:', err);
@@ -45,6 +46,7 @@ export class Register {
         } else {
           this.errorMessage = 'Registration failed: ' + JSON.stringify(err.error || err.message);
         }
+        this.cdr.detectChanges();
       }
     });
   }
