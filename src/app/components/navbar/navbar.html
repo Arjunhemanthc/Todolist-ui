@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid position-relative">
+    <a class="navbar-brand position-absolute top-50 start-50 translate-middle" style="cursor:pointer" (click)="navigate('/todos')">Todo App</a>
+    
+    <div class="navbar-nav ms-auto">
+      <ng-container *ngIf="!isLoggedIn">
+        <a class="nav-link" style="cursor:pointer" (click)="navigate('/login')">Login</a>
+        <a class="nav-link" style="cursor:pointer" (click)="navigate('/register')">Register</a>
+      </ng-container>
+      <ng-container *ngIf="isLoggedIn">
+        <a class="nav-link" style="cursor:pointer" routerLink="/todos">View Todos</a>
+        <a class="nav-link" style="cursor:pointer" routerLink="/todos/add">Add Todo</a>
+        <a class="nav-link text-danger" style="cursor:pointer" (click)="logout()">Logout</a>
+      </ng-container>
+    </div>
+  </div>
+</nav>

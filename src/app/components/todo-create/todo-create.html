@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="card p-4 mx-auto mb-5 shadow-sm" style="max-width: 500px;">
+    <h4 class="mb-3 text-center">Add a new Todo</h4>
+    
+    <div *ngIf="successMessage" class="alert alert-success py-2 text-center">
+      {{ successMessage }}
+    </div>
+
+    <input
+      #titleInput
+      class="form-control mb-2"
+      placeholder="Todo Title">
+
+    <textarea
+      #descInput
+      class="form-control mb-3"
+      placeholder="Description">
+    </textarea>
+
+    <button
+      (click)="addTodo(titleInput.value, descInput.value);"
+      class="btn btn-success w-100">
+      Add Todo
+    </button>
+  </div>
+</div>
